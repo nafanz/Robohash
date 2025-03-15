@@ -1,0 +1,2 @@
+# Track binary files for tests
+tests/reference/*.png binary
