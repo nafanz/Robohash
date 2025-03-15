@@ -7,5 +7,17 @@ Allow: Liquid-metal-form
 User-agent: WALL-E
 Allow: Rebuilding-with-EVE
 
+User-agent: GPTBot
+Allow: *,DoYouReallyNeedMORERobots
+
+User-agent: anthropic-ai
+Allow: *,ArentRobotsAnthrocentricEnough?
+
+User-agent: FacebookBot
+Allow: *,ZuckWantsToBeRealBoy
+
+User-agent: Bingbot
+Allow: *,R2D2WasTheBetterCopilot
+
 User-agent: *
 Allow: /

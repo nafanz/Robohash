@@ -1,9 +1,6 @@
-#!/usr/bin/env python
-# This Python file uses the following encoding: utf-8
+#!/usr/bin/env python3
 
 # Find details about this project at https://github.com/e1ven/robohash
-
-from __future__ import unicode_literals
 import tornado.httpserver
 import tornado.ioloop
 import tornado.options
@@ -17,22 +14,15 @@ import re
 import io
 import base64
 
-# Import urllib stuff that works in both Py2 and Py3
-try:
-    import urllib.request
-    import urllib.parse
-    urlopen = urllib.request.urlopen
-    urlencode = urllib.parse.urlencode
-except ImportError:
-    import urllib2
-    import urllib
-    urlopen = urllib2.urlopen
-    urlencode = urllib.urlencode
+import urllib.request
+import urllib.parse
+urlopen = urllib.request.urlopen
+urlencode = urllib.parse.urlencode
 
 from tornado.options import define, options
 import io
 
-define("port", default=80, help="run on the given port", type=int)
+define("port", default=int(os.environ.get("PORT", 80)), help="run on the given port", type=int)
 
 
 
@@ -233,14 +223,19 @@ class ImgHandler(tornado.web.RequestHandler):
     The ImageHandler is our tornado class for creating a robot.
     called as Robohash.org/$1, where $1 becomes the seed string for the Robohash obj
     """
-    def get(self,string=None):
-
+    def get(self, string: str = None):
+        """
+        Handle GET requests for robot images
+        
+        Args:
+            string: Input string to hash into a robot
+        """
         # Set default values
-        sizex = 300
-        sizey = 300
-        format = "png"
-        bgset = None
-        color = None
+        sizex: int = 300
+        sizey: int = 300
+        format: str = "png"
+        bgset: str = None
+        color: str = None
 
         # Normally, we pass in arguments with standard HTTP GET variables, such as
         # ?set=any and &size=100x100
@@ -275,7 +270,7 @@ class ImgHandler(tornado.web.RequestHandler):
 
         # Ensure we have something to hash!
         if string is None:
-                string = self.request.remote_ip
+            string = self.request.remote_ip
 
 
         # Detect if the user has passed in a flag to ignore extensions.
@@ -297,12 +292,12 @@ class ImgHandler(tornado.web.RequestHandler):
         if args.get('gravatar','').lower() == 'yes':
             # They have requested that we hash the email, and send it to Gravatar.
             default = "404"
-            gravatar_url = "https://secure.gravatar.com/avatar/" + hashlib.md5(string.lower().encode('utf-8')).hexdigest() + "?"
+            gravatar_url = f"https://secure.gravatar.com/avatar/{hashlib.md5(string.lower().encode('utf-8')).hexdigest()}?"
             gravatar_url += urlencode({'default':default, 'size':str(sizey)})
         elif args.get('gravatar','').lower() == 'hashed':
             # They have sent us a pre-hashed email address.
             default = "404"
-            gravatar_url = "https://secure.gravatar.com/avatar/" + string + "?"
+            gravatar_url = f"https://secure.gravatar.com/avatar/{string}?"
             gravatar_url += urlencode({'default':default, 'size':str(sizey)})
 
         # If we do want a gravatar, request one. If we can't get it, just keep going, and return a robohash
@@ -387,9 +382,7 @@ def main():
 
         settings = {
         "static_path": os.path.join(os.path.dirname(__file__), "static"),
-        "cookie_secret": "9b90a85cfe46cad5ec136ee44a3fa332",
-        "login_url": "/login",
-        "xsrf_cookies": True,
+        # No need for authentication or XSRF protection for an image service
         }
 
         application = tornado.web.Application([
@@ -404,7 +397,7 @@ def main():
         http_server = tornado.httpserver.HTTPServer(application,xheaders=True)
         http_server.listen(options.port)
 
-        print("The Oven is warmed up - Time to make some Robots! Listening on port: " + str(options.port))
+        print(f"The Oven is warmed up - Time to make some Robots! Listening on port: {options.port}")
         tornado.ioloop.IOLoop.instance().start()
 if __name__ == "__main__":
         main()
