@@ -20,7 +20,7 @@ WORKDIR /app
 
 # Copy the application code
 COPY robohash/ /app/robohash/
-COPY setup.py .
+COPY pyproject.toml .
 COPY README.md .
 
 # Install the application in development mode
