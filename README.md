@@ -152,15 +152,18 @@ with open("path/to/new/file.png", "wb") as f:
 
 ## Robosets
 
-RoboHash comes with five distinct sets of mechanical/biological entities:
+RoboHash comes with distinct sets of mechanical/biological entities:
 
-- **set1**: Classic robots created by Zikri Kader. The original robotic workforce.
-- **set2**: Monsters created by Hrvoje Novakovic. A whole slew of random monsters.
-- **set3**: Robot heads created by Julian Peter Arias. New, suave, disembodied heads. That's sexy. Like a robot.
-- **set4**: Cats created by David Revoy. Hydroponically grown beautiful kittens.
-- **set5**: Human avatars created by Pablo Stanley. For those afraid of the robocalypse, you can also generate human technicians to mind the robot army.
-- **set6**: Cosmic Apes created by OceanSlim. Monkeying around with the fabric of space-time itself.
-  - Note: This set uses additional symbolic links to implement weighted rarity distribution as the creator originally intended. Apes with laser eyes and tear drop tattoos are exceptionally rare.
+| Set  | Name           | Author                                                                      | Description                                                                                         | License                              |
+|------|----------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------|
+| set1 | Classic robots | Zikri Kader                                                                 | The original robotic workforce                                                                      | CC-BY-3.0, CC-BY-4.0                 |
+| set2 | Monsters       | Hrvoje Novakovic                                                            | A whole slew of random monsters                                                                     | CC-BY-3.0                            |
+| set3 | Robot heads    | Julian Peter Arias                                                          | New, suave, disembodied heads. That's sexy. Like a robot                                            | CC-BY-3.0                            |
+| set4 | Cats           | [David Revoy](https://www.peppercarrot.com/extras/html/2016_cat-generator/) | Hydroponically grown beautiful kittens                                                              | CC-BY-4.0                            |
+| set5 | Human avatars  | [Pablo Stanley](https://avataaars.com/)                                     | For those afraid of the robocalypse, you can also generate human technicians to mind the robot army | Free for personal and commercial use |
+| set6 | Cosmic apes    | [OceanSlim](https://github.com/0ceanSlim)                                   | Monkeying around with the fabric of space-time itself                                               | CC0 (Public Domain)                  |
+
+Note **set6**: This set uses additional symbolic links to implement weighted rarity distribution as the creator originally intended. Apes with laser eyes and tear drop tattoos are exceptionally rare.
 
 Specify which set you want in the `assemble()` method or through URL parameters. Alternatively, specify the string "any", and RoboHash will pick an image set for you, based on the provided hash.
 
@@ -171,19 +174,6 @@ If you use a specific set, or a list of them (like "?sets=1,3"), it'll probably 
 The Python Code is available under the MIT/Expat license. See the `LICENSE.txt` file for the full text of this license. Copyright (c) 2011.
 
 Feel free to embed the Robohash images, host your own instance of Robohash, or integrate them into your own project. If you do, please just mention where they came from :) Example wording might be "Robots lovingly delivered by Robohash.org" or similar.
-
-### Image Sets Attribution
-
-Robohash contains art from various talented creators:
-
-- The "set1" artwork (and robohash backgrounds) were created by Zikri Kader. They are available under CC-BY-3.0 or CC-BY-4.0 license.
-- The "set2" artwork was created by Hrvoje Novakovic. They are available under CC-BY-3.0 license.
-- The "set3" artwork was created by Julian Peter Arias. They are available under CC-BY-3.0 license.
-- The Cats/"set4" were created by David Revoy, used under CC-BY-4.0 https://www.peppercarrot.com/extras/html/2016_cat-generator/
-- The avatars used in "set5" were created by Pablo Stanley, for https://avataaars.com/. They are "Free for personal and commercial use. 😇"
-- The Cosmic Apes/"set6" were created by [OceanSlim](https://github.com/0ceanSlim). They are available under CC0 (Public Domain).
-
-You are free to embed robots under the terms of the CC-BY license. Example wording might be "Robots lovingly delivered by Robohash.org" or something similarly respectful of our robotic overlords.
 
 ## Continuous Integration and Deployment
 
