@@ -65,7 +65,7 @@ class Robohash:
         # We'll remove them from the string before hashing.
         # This ensures that /Bear.png and /Bear.bmp will send back the same image, in different formats.
 
-        if string.lower().endswith(('.png','.gif','.jpg','.bmp','.jpeg','.ppm','.datauri')):
+        if string.lower().endswith(('.png','.gif','.jpg','.bmp','.jpeg','.ppm','.datauri','.webp')):
             format_str = string[string.rfind('.') + 1:]
             if format_str.lower() == 'jpg':
                 format_str = 'jpeg'
